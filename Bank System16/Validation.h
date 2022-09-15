@@ -1,11 +1,13 @@
+#pragma once
 #include<string>
 #include<iostream>
 using namespace std;
+
 class Validation
 {
 public:
 	//try catch to check the lentgh of the name
-	bool checkName(string name)
+	static bool checkName(string name)
 	{
 		try
 		{
@@ -31,7 +33,7 @@ public:
 
 	}
 
-	bool checkPassword(string password)
+	static bool checkPassword(string password)
 	{
 		try
 		{
@@ -56,7 +58,7 @@ public:
 		}
 	}
 
-	bool checkBalance(double balnace)
+	static bool checkBalance(double balnace)
 	{
 		try
 		{
@@ -76,7 +78,7 @@ public:
 		}
 	}
 
-	bool checkSalary(double salary)
+	static bool checkSalary(double salary)
 	{
 		try
 		{

@@ -1,10 +1,13 @@
+#pragma once
 #include <string>
+#include<iostream>
 #include "Validation.h"
 using namespace std;
 
+
 class Person
 {
-	Validation validate;
+	
 protected:
 	int id;
 	string name, password;
@@ -15,8 +18,8 @@ public:
 	Person()
 	{
 		id = 0;
-		name = "";
-		password = "";
+		name = "No Name";
+		password = "00000000";
 		balance = 0;
 		salary = 0;
 	}
@@ -28,23 +31,23 @@ public:
 	}
 	void setName(string name)
 	{
-		if (validate.checkName(name))
+		if (Validation::checkName(name))
 			Person::name = name;
 
 	}
 	void setPassword(string password)
 	{
-		if (validate.checkPassword(password))
+		if (Validation::checkPassword(password))
 			Person::password = password;
 	}
 	void setBalance(double balance)
 	{
-		if(validate.checkBalance(balance))
+		if(Validation::checkBalance(balance))
 		Person::balance = balance;
 	}
 	void setSalary(double salary)
 	{
-		if (validate.checkSalary(salary))
+		if (Validation::checkSalary(salary))
 			Person::salary = salary;
 	}
 	//getters
