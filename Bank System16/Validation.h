@@ -1,103 +1,65 @@
 #pragma once
 #include<string>
 #include<iostream>
+#include <Windows.h>
 using namespace std;
 
 class Validation
 {
 public:
+
 	//try catch to check the lentgh of the name
 	static bool checkName(string name)
 	{
-		try
+		if (name.length() >= 5 && name.length() <= 20)
 		{
-			if (name.length()<5)
-			{
-				cout << "Name cannot be less than 5 chars\n";
-				throw name;
-			}
-			else if (name.length()>20)
-			{
-				cout << "Name cannot be more than 20 chars\n";
-				throw name;
-			}
-			else
-			{
-				return true;
-			}
+			return true;
 		}
-		catch (string name)
+		else
 		{
+			cout << "Name must be min 5 chars and max 20 chars\n";
 			return false;
 		}
-
 	}
 
 	static bool checkPassword(string password)
 	{
-		try
+
+		if (password.length() >= 8 && password.length() <= 20)
 		{
-			if (password.length() < 8)
-			{
-				cout << "Password cannot be less than 8 chars\n";
-				throw password;
-			}
-			else if (password.length() > 20)
-			{
-				cout << "Password cannot be more than 20 chars\n";
-				throw password;
-			}
-			else
-			{
-				return true;
-			}
+			return true;
 		}
-		catch (string password)
+		else
 		{
+			cout << "Password must be min 8 chars and max 20 chars\n";
 			return false;
 		}
+
 	}
 
 	static bool checkBalance(double balnace)
 	{
-		try
+
+		if (balnace < 1500)
 		{
-			if (balnace<1500)
-			{
-				cout << "Balance can`t be less than 1500\n";
-				throw balnace;
-			}
-			else
-			{
-				return true;
-			}
-		}
-		catch (double balance)
-		{
+			cout << "Balance can`t be less than 1500$\n";
 			return false;
 		}
+
 	}
 
 	static bool checkSalary(double salary)
 	{
-		try
-		{
-			if (salary<5000)
-			{
-				cout << "Salray cannot be less than 5000$\n";
-				throw salary;
-			}
-			else
-			{
-				return true;
-			}
 
-		}
-		catch (double salary)
+		if (salary < 5000)
 		{
+			cout << "Salray cannot be less than 5000$\n";
 			return false;
 		}
+
 	}
 
 };
+
+
 

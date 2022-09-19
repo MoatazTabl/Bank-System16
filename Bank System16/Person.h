@@ -59,13 +59,8 @@ public:
 
 	//disply method
 
-	void display()
-	{
-		cout << "ID: " << id << endl;
-		cout << "Name: " << name << endl;
-		cout << "Password: " << password << endl;
-		cout << "Balance: " << balance << endl;
-	}
+	virtual void display() = 0;
+	
 
 };
 
