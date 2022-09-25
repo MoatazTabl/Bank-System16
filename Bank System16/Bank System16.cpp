@@ -1,5 +1,6 @@
 #include <iostream>
 #include<string>
+#include<fstream>
 #include "Client.h"
 #include "Employee.h"
 #include "Admin.h"
@@ -9,21 +10,14 @@ int main()
 {
 	system("color f0");
 
-	/*Client* p1 = nullptr;
-	Client* p2 = nullptr;
+	try
+	{
 
-	p1 = new Client("mahmoud badawy biomy", "biomy2020", 50002000, 2000);
-	p2 = new Employee("abdo ahmed hassan", "abdo2020", 3001000, 3000, 6000);
+	}
+	catch (const std::exception&)
+	{
 
-	p1->displayInfo();
-
-	p2->displayInfo();
-
-	p1->transferTo(500, p2);
-
-	p2->displayInfo();
-
-	delete p1, p2;*/
+	}
 
 	Admin* e1 = nullptr;
 
