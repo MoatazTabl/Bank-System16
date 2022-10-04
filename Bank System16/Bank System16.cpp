@@ -1,34 +1,39 @@
-#include <iostream>
-#include<string>
+﻿#include <iostream>
+
+#include <string>
 #include<fstream>
+#include<windows.h>
 #include "Client.h"
 #include "Employee.h"
 #include "Admin.h"
+#include "Screen.h"
 using namespace std;
+
 
 int main()
 {
 	system("color f0");
 
-	try
-	{
+	
 
-	}
-	catch (const std::exception&)
-	{
+	
+	Client* client = nullptr;
+	Employee* employee = nullptr;
+	Admin* admin = nullptr;
 
-	}
-
-	Admin* e1 = nullptr;
-
-	e1 = new Admin("Moataz", "17sdsdsd89", 5, 2500, 5500);
-
-	e1->displayInfo();
-
-	e1->setName("moat");
+	//Screen::welcomeScreen();
 
 	
 
-	delete e1;
+	
+	Screen::login_or_signup();
+
+	
+	
+
+	string* ptr=Screen::clientLogin();
+
+	cout << *(ptr+1);
+
 }
 

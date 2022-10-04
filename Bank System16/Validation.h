@@ -1,14 +1,12 @@
 #pragma once
 #include<string>
 #include<iostream>
-#include <Windows.h>
 using namespace std;
 
 class Validation
 {
 public:
 
-	//try catch to check the lentgh of the name
 	static bool checkName(string name)
 	{
 		if (name.length() >= 5 && name.length() <= 20)
@@ -57,6 +55,20 @@ public:
 			return false;
 		}
 
+	}
+
+	static bool UserChoiceLogin(int userChoice)
+	{
+		if (userChoice >= 1 && userChoice <= 3)
+		{
+			
+			return true;
+		}
+		else
+		{
+			cout << "please enter a correct number";
+			return false;
+		}
 	}
 
 };
