@@ -7,12 +7,14 @@
 class FileManager : public DataSourceInterface
 {
 private:
-	vector <Client> clientVector;
+	vector <string> clientVector;
+	vector <string>employeeVector;
+	vector <string>adminVector;
 public:
 	fstream clientFile;
 	fstream employeeFile;
 	fstream adminFile;
-
+	
 	void addClient(Client& client)
 	{
 		
@@ -25,7 +27,7 @@ public:
 			clientFile.open("clients.txt");
 
 		}
-		clientFile << client.getID() <<" " << client.getName()<<" " << client.getPassword() << " " << client.getBalance() << endl;
+		clientFile << client.getID() <<"|" << client.getName()<<"|" << client.getPassword() <<"|" << client.getBalance() << endl;
 		clientFile.close();
 	}
 	
@@ -40,7 +42,7 @@ public:
 		{
 			employeeFile.open("employees.txt");
 		}
-		employeeFile << employee.getID() << " " << employee.getName() << " " << employee.getPassword() << " " << employee.getBalance() << endl;
+		employeeFile << employee.getID() << "|" << employee.getName() << "|" << employee.getPassword() <<"|" << employee.getSalary()<< endl;
 		employeeFile.close();
 	}
 
@@ -55,14 +57,71 @@ public:
 		{
 			adminFile.open("admins.txt");
 		}
-		adminFile << admin.getID() << " " << admin.getName() << " " << admin.getPassword() << " " << admin.getBalance() << endl;
+		adminFile << admin.getID() << "|" << admin.getName() << "|" << admin.getPassword() << "|"<<admin.getSalary() << endl;
 		adminFile.close();
 	}
 
-	/*vector < Client >getAllClients()
+	vector <string> getAllClients()
 	{
+		clientFile.open("clients.txt", ios::in);  
+		if (clientFile.is_open())
+		{
+			string temp;
+			while (getline(clientFile, temp))
+			{
+				clientVector.push_back(temp);
+			}
+		}
+		clientFile.close(); 
 
-	}*/
+		return clientVector;
+	}
+	vector<string>getAllEmployees()
+	{
+		employeeFile.open("employees.txt", ios::in);
+		if (employeeFile.is_open())
+		{
+			string temp;
+			while (getline(employeeFile, temp))
+			{
+				employeeVector.push_back(temp);
+			}
+		}
+		employeeFile.close();
+
+		return employeeVector;
+	}
+	vector<string>getAllAdmins()
+	{
+		adminFile.open("admins.txt", ios::in);
+		if (adminFile.is_open())
+		{
+			string temp;
+			while (getline(adminFile,temp))
+			{
+				adminVector.push_back(temp);
+			}
+		}
+		adminFile.close();
+		return adminVector;
+
+	}
+
+	void removeAllClients()
+	{
+		clientFile.open("clients.txt", std::ofstream::out | std::ofstream::trunc);
+		clientFile.close();
+	}
+	void removeAllEmployees()
+	{
+		employeeFile.open("employees.txt", std::ofstream::out | std::ofstream::trunc);
+		employeeFile.close();
+	}
+	void removeAllAdmins()
+	{
+		adminFile.open("admins.txt", std::ofstream::out | std::ofstream::trunc);
+		adminFile.close();
+	}
 	
 };
 

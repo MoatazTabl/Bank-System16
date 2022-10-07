@@ -11,7 +11,7 @@ public:
 	static void welcomeScreen()
 	{
 		cout << "Welcome!";
-		Sleep(5000);
+		//Sleep(5000);
 		system("cls");
 	}
 
@@ -62,6 +62,8 @@ public:
 			break;
 		case(1):
 			clientLogin();
+		/*case(2):*/
+			/*employeeLogin();*/
 		}
 	}
 

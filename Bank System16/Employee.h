@@ -1,56 +1,137 @@
 #include <iostream>
 #include<string>
+#include <sstream>
+#include <vector>
+#include <fstream>
 #include "Validation.h"
 #include "Client.h"
 using namespace std;
 #pragma once
-class Employee : public Client
+class Employee
 {
 protected:
 	double salary = NULL;
+	string name,password;
+	int id;
+	fstream clientFile;
+	
 public:
 	//const
-	Employee(string name = " ", string password = " ", int id = 0, double balance = 0.0, double salary = 0.0) : Client(name, password, id, balance)
+	Employee(string name = " ", string password = " ", int id = 0, double salary = 0.0)
 	{
-		this->setSalary(salary);
+		setName(name);
+		setPassword(password);
+		setID(id);
+		setSalary(salary);
 	}
-	//setters / getters 
-	virtual void setSalary(double salary)
+
+	//setters / getters
+	void setName(string name)
+	{
+		if (Validation::checkName(name))
+		{
+			Employee::name = name;
+		}
+
+	}
+	string getName()
+	{
+		return name;
+	}
+
+	void setPassword(string password)
+	{
+		if (Validation::checkPassword(password))
+		{
+			Employee::password = password;
+		}
+	}
+	string getPassword()
+	{
+		return password;
+	}
+
+	
+
+	void setID(int id)
+	{
+		Employee::id = id;
+	}
+	int getID()
+	{
+		return id;
+
+	}
+
+	void setSalary(double salary)
 	{
 		if (Validation::checkSalary(salary))
-			this->salary = salary;
-
+		{
+			Employee::salary = salary;
+		}
 	}
-	virtual double getSalary()
+	double getSalary()
 	{
-		return this->salary;
+		return salary;
 	}
-
 	//methods
-	virtual void deposite(double amount)
+	
+	void displayInfo()
 	{
-		Client::deposite(amount);
-	}
-	virtual void withdraw(double amount)
-	{
-		Client::withdraw(amount);
-	}
-	virtual void transferTo(double amount, Client* recipient)
-	{
-		Client::transferTo(amount, recipient);
-	}
-	virtual void checkBalance()
-	{
-		Client::checkBalance();
-	}
-	virtual void displayInfo()
-	{
-		cout << "Name : " << this->getName() << endl;
-		cout << "Password : " << this->getPassword() << endl;
-		cout << "Id : " << this->getID() << endl;
-		cout << "Balance : " << this->getBalance() << endl;
-		cout << "Salary : " << this->getSalary() << endl;
+		cout << "Name : " << getName() << endl;
+		cout << "Password : " << getPassword() << endl;
+		cout << "Id : " << getID() << endl;
+		cout << "Salary : " << getSalary() << endl;
 		cout << "****************" << endl;
+
+	}
+	
+	void addClient(Client& client)
+	{
+
+		try
+		{
+			clientFile.open("clients.txt", ios::app);
+		}
+		catch (const std::exception&)
+		{
+			clientFile.open("clients.txt");
+
+		}
+		clientFile << client.getID() << "|" << client.getName() << "|" << client.getPassword() << "|" << client.getBalance() << endl;
+		clientFile.close();
+	}
+
+	vector<string> searchClient()
+	{
+		vector<string>clientVector;
+		string temp;
+
+		clientFile.open("clients.txt", ios::in);
+		if (clientFile.is_open())
+		{
+			while (getline(clientFile, temp))
+			{
+				clientVector.push_back(temp);
+			}
+		}
+
+		clientFile.close();
+		
+		//vector<int> 
+		for (int i = 0; i < clientVector.size(); i++)
+		{
+			temp = clientVector[i];
+
+			for (int j = 0; j < temp.size(); j++)
+			{
+				if (temp=="|")
+				{
+
+				}
+			}
+		}
+		
 	}
 
 };
