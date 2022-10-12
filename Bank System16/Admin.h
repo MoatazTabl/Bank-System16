@@ -1,14 +1,20 @@
+#pragma once
+#pragma message("Top in: " __FILE__)
 #include <iostream>
+#include "Employee.h"
 #include<string>
 #include "Validation.h"
-#include "Employee.h"
+
+
 using namespace std;
-#pragma once
-class Admin : public Employee
+
+
+#pragma message("Before class in: " __FILE__)
+class Admin :Employee
 {
 public:
 	//const
-	Admin(string name = " ", string password = " ", int id = 0 ,double salary = 0.0) : Employee(name, password, id, salary)
+	Admin(int id = 0, string name = " ", string password = " ", double salary = 0.0) : Employee(id, name, password,  salary)
 	{
 
 	}
@@ -17,7 +23,11 @@ public:
 	
 	void displayInfo()
 	{
-		Employee::displayInfo();
+		cout << "Name : " << getName() << endl;
+		cout << "Password : " << getPassword() << endl;
+		cout << "Id : " << getID() << endl;
+		cout << "Salary : " << getSalary() << endl;
+		cout << "****************" << endl;
 	}
 
 };

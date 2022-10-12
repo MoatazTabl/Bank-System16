@@ -1,12 +1,18 @@
+#pragma once
+#pragma message("Top in: " __FILE__)
 #include <iostream>
 #include<string>
 #include <sstream>
 #include <vector>
 #include <fstream>
 #include "Validation.h"
-#include "Client.h"
+
+#include "Parser.h"
+
 using namespace std;
-#pragma once
+
+#pragma message("Before class in: " __FILE__)
+
 class Employee
 {
 protected:
@@ -17,7 +23,7 @@ protected:
 	
 public:
 	//const
-	Employee(string name = " ", string password = " ", int id = 0, double salary = 0.0)
+	Employee(int id = 0, string name = " ", string password = " ",  double salary = 0.0)
 	{
 		setName(name);
 		setPassword(password);
@@ -85,53 +91,92 @@ public:
 		cout << "****************" << endl;
 
 	}
-	
+
 	void addClient(Client& client)
 	{
 
-		try
-		{
-			clientFile.open("clients.txt", ios::app);
-		}
-		catch (const std::exception&)
-		{
-			clientFile.open("clients.txt");
+		fstream file("clients.txt", ios::app);
 
-		}
-		clientFile << client.getID() << "|" << client.getName() << "|" << client.getPassword() << "|" << client.getBalance() << endl;
-		clientFile.close();
+		file << client.getID() << '|' << client.getName() << '|' << client.getPassword() << '|' << client.getBalance() << endl;
+		file.close();
 	}
 
-	vector<string> searchClient()
+	Client searchClient(int id)
 	{
-		vector<string>clientVector;
-		string temp;
-
-		clientFile.open("clients.txt", ios::in);
-		if (clientFile.is_open())
+		fstream file;
+		file.open("clients.txt",ios::in);
+		string line;
+		vector<string>temp;
+		vector <string> ClientNum;
+		vector <string> Clients;
+		while (getline(file, line))
 		{
-			while (getline(clientFile, temp))
-			{
-				clientVector.push_back(temp);
-			}
+			Clients.push_back(line);
+
+			temp=Parser::split(line, 1);
+
+			ClientNum.insert(ClientNum.end(),temp.begin(), temp.end());
 		}
 
-		clientFile.close();
-		
-		//vector<int> 
-		for (int i = 0; i < clientVector.size(); i++)
+		int current_line = 0;
+		int idd = 0;
+		for (int i=0; i< ClientNum.size();i++)
 		{
-			temp = clientVector[i];
+			string temp=ClientNum[i];
 
-			for (int j = 0; j < temp.size(); j++)
+			idd = stoi(temp);
+			
+			if (idd!=id)
 			{
-				if (temp=="|")
-				{
-
-				}
+				current_line++;
 			}
+			else if (idd=id)
+			{
+				break;
+			}
+			
+		}
+
+		if (idd!=id)
+		{
+			cout << "Client not found\n";
+			return 1;
+		}
+		else {
+			Client c(Parser::parseToClient(Clients[current_line]));
+
+			return c;
 		}
 		
+		
+	}
+
+	void listClient()
+	{
+		string line;
+		fstream file("clients.txt", ios::in);
+		vector <string>clients;
+		vector <string>temp;
+		while (getline(file,line))
+		{
+			temp=Parser::split(line);
+
+			clients.insert(clients.end(), temp.begin(), temp.end());
+
+			cout << "\nId: " << temp[0];
+			cout << "\nName: " << temp[1];
+			cout << "\nPassword: " << temp[2];
+			cout << "\nBalance: " << temp[3];
+			cout << "\n********************";
+
+		}
+	}
+
+	void editClient(int id, string name, string password, double balance)
+	{
+		searchClient(id);
+
+
 	}
 
 };

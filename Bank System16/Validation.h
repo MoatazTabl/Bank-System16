@@ -1,8 +1,9 @@
 #pragma once
+#pragma message("Top in: " __FILE__)
 #include<string>
 #include<iostream>
 using namespace std;
-
+#pragma message("Before class in: " __FILE__)
 class Validation
 {
 public:

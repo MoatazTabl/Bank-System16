@@ -3,8 +3,9 @@
 #include "Client.h"
 #include "Employee.h"
 #include "Admin.h"
-#include"FileManager.h"
+
 #include "Screen.h"
+
 using namespace std;
 
 
@@ -12,27 +13,26 @@ int main()
 {
 	system("color f0");
 	
+	Employee e(123, "fdafdad", "afasfasfasfaf",12344.5);
+	Client c1(123,"drctfvgh","xrdcfgvhbj",456789);
 	
-	Client c("dcfgvhbn", "sxdrctfvgybuhnj", 15, 74236);
+	e.listClient();
+
 	
 
-	Employee emp("sdfghjkl","753.12220",7,457892);
-	
-	
-	vector<string>tempp = emp.searchClient();
-	
-	for (int i = 0; i < tempp.size(); i++)
+	/*vector<string> words=Parser::split(line);
+
+	for (int i = 0; i < words.size(); i++)
 	{
-		cout << tempp[i];
-	}
+		cout << words[i];
+	}*/
 	
 	
+	/*
 
-	//employee.addClient(client);
-
 	
 	
-	/*vector<string> temp = m.getAllClients();
+	vector<string> temp1 = m.getAllClients();
 	for (int i = 0; i < temp1.size(); i++)
 	{
 		cout << temp1[i] << endl;;

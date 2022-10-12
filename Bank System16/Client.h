@@ -1,13 +1,13 @@
+#pragma message("Top in: " __FILE__)
 #include <iostream>
 #include<string>
 #include "Validation.h"
 using namespace std;
 #pragma once
+#pragma message("Before class in: " __FILE__)
 class Client
 {
-private:
 
-	
 protected:
 	string name, password;
 	int id;
@@ -15,7 +15,7 @@ protected:
 public:
 
 	//const
-	Client(string name = " ", string password = " ", int id = 0, double balance = 0.0)
+	Client(int id = 0, string name = " ", string password = " ",  double balance = 0.0)
 	{
 		setName(name);
 		setPassword(password);
@@ -100,9 +100,9 @@ public:
 	}
 	void displayInfo()
 	{
+		cout << "Id : " << getID() << endl;
 		cout << "Name : " << getName() << endl;
 		cout << "Password : " << getPassword() << endl;
-		cout << "Id : " << getID() << endl;
 		cout << "Balance : " << getBalance() << endl;
 		cout << "****************" << endl;
 

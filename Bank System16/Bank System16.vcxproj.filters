@@ -18,9 +18,6 @@
     <ClCompile Include="Bank System16.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Person.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -44,7 +41,10 @@
     <ClInclude Include="Screen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Person.h">
+    <ClInclude Include="Parser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FileHelper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

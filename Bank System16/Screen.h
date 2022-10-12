@@ -1,3 +1,4 @@
+#pragma message("Top in: " __FILE__)
 #include <iostream>
 #include<string>
 #include <algorithm>
@@ -5,6 +6,7 @@
 #include "Validation.h"
 using namespace std;
 #pragma once
+#pragma message("Before class in: " __FILE__)
 class Screen
 {
 public:

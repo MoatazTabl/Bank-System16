@@ -128,15 +128,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Bank System16.cpp" />
-    <ClCompile Include="Person.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Admin.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="DataSourceInterface.h" />
     <ClInclude Include="Employee.h" />
+    <ClInclude Include="FileHelper.h" />
     <ClInclude Include="FileManager.h" />
-    <ClInclude Include="Person.h" />
+    <ClInclude Include="Parser.h" />
     <ClInclude Include="Screen.h" />
     <ClInclude Include="Validation.h" />
   </ItemGroup>

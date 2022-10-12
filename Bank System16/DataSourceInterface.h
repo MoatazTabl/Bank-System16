@@ -1,9 +1,11 @@
 #pragma once
+#pragma message("Top in: " __FILE__)
 #include "Client.h"
-#include "Admin.h"
 #include "Employee.h"
-#include <vector>
+#include "Admin.h"
 
+#include <vector>
+#pragma message("Before class in: " __FILE__)
 class DataSourceInterface
 {
 	virtual vector < string >getAllClients()=0;
