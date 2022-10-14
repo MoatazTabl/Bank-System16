@@ -1,4 +1,9 @@
 #pragma once
+
+#ifndef _File1
+#define _File1
+
+#include"Admin.h"
 #include "DataSourceInterface.h"
 #include <fstream>
 #include <string>
@@ -125,3 +130,4 @@ public:
 	
 };
 
+#endif // !

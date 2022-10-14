@@ -1,20 +1,22 @@
 #pragma once
-#pragma message("Top in: " __FILE__)
+#include "Validation.h"
+#include "Parser.h"
+#include "Client.h"
 #include <iostream>
 #include<string>
 #include <sstream>
 #include <vector>
 #include <fstream>
-#include "Validation.h"
+#include<memory>
 
-#include "Parser.h"
 
 using namespace std;
 
-#pragma message("Before class in: " __FILE__)
 
 class Employee
 {
+private:
+	
 protected:
 	double salary = NULL;
 	string name,password;
@@ -92,16 +94,10 @@ public:
 
 	}
 
-	void addClient(Client& client)
-	{
-
-		fstream file("clients.txt", ios::app);
-
-		file << client.getID() << '|' << client.getName() << '|' << client.getPassword() << '|' << client.getBalance() << endl;
-		file.close();
-	}
-
-	Client searchClient(int id)
+	void addClient(Client& client);
+	
+	template<class T>
+	unique_ptr<T> searchClient(int id)
 	{
 		fstream file;
 		file.open("clients.txt",ios::in);
@@ -109,6 +105,7 @@ public:
 		vector<string>temp;
 		vector <string> ClientNum;
 		vector <string> Clients;
+		
 		while (getline(file, line))
 		{
 			Clients.push_back(line);
@@ -118,8 +115,9 @@ public:
 			ClientNum.insert(ClientNum.end(),temp.begin(), temp.end());
 		}
 
-		int current_line = 0;
+		
 		int idd = 0;
+		int current_line = 0;
 		for (int i=0; i< ClientNum.size();i++)
 		{
 			string temp=ClientNum[i];
@@ -132,6 +130,7 @@ public:
 			}
 			else if (idd=id)
 			{
+				
 				break;
 			}
 			
@@ -140,15 +139,25 @@ public:
 		if (idd!=id)
 		{
 			cout << "Client not found\n";
-			return 1;
+			return nullptr;
 		}
 		else {
-			Client c(Parser::parseToClient(Clients[current_line]));
+			if constexpr (is_same_v<T,Client>)
+			{
+				unique_ptr<T>c(new T(Parser::parseToClient(Clients[current_line])));
 
-			return c;
+
+				return c;
+			}
+			else if constexpr (is_same_v<T,int>)
+			{
+				unique_ptr<T>line_num(new int);
+
+				line_num = make_unique<int>(current_line);
+				return line_num;
+			}
+			
 		}
-		
-		
 	}
 
 	void listClient()
@@ -172,12 +181,45 @@ public:
 		}
 	}
 
+	
 	void editClient(int id, string name, string password, double balance)
 	{
-		searchClient(id);
+		fstream file("clients.txt", ios::in);
+		
+		string line;
+		vector<string>clients;
 
 
+		unique_ptr<int>c1 = move(searchClient<int>(id));
+
+		if (c1!=nullptr)
+		{
+			while (getline(file, line))
+			{
+				clients.push_back(line);
+
+			}
+			file.close();
+
+
+			file.open("clients.txt", std::ofstream::out | std::ofstream::trunc);
+			for (int i = 0; i < clients.size(); i++)
+			{
+
+				if (i == *c1)
+				{
+					file << id << "|" << name << "|" << password << "|" << balance << endl;
+
+				}
+				else if (i != *c1)
+				{
+					file << clients[i];
+					file << "\n";
+				}
+
+			}
+		}
+		
 	}
-
 };
 

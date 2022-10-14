@@ -1,13 +1,19 @@
 #pragma once
+
+#ifndef _File2
+
+#define _File2
+
 #pragma message("Top in: " __FILE__)
-#include<iostream>
-#include<string>
-#include<fstream>
 #include "Client.h"
 #include"Employee.h"
 #include"Admin.h"
 
 #include "FileManager.h"
+#include<iostream>
+#include<string>
+#include<fstream>
+
 #pragma message("Before class in: " __FILE__)
 using namespace std;
 class FileHelper
@@ -81,3 +87,4 @@ public:
 	}
 };
 
+#endif // !_File2

@@ -2,8 +2,9 @@
 #include <string>
 #include "Client.h"
 #include "Employee.h"
-#include "Admin.h"
 
+#include"FileHelper.h"
+#include"FileManager.h"
 #include "Screen.h"
 
 using namespace std;
@@ -13,31 +14,22 @@ int main()
 {
 	system("color f0");
 	
-	Employee e(123, "fdafdad", "afasfasfasfaf",12344.5);
-	Client c1(123,"drctfvgh","xrdcfgvhbj",456789);
-	
-	e.listClient();
+	unique_ptr<Employee>e(new Employee(123, "fdafdad", "afasfasfasfaf",12344.5));
 
-	
+	unique_ptr<Client>c1(new Client(5, "drctfvgh", "xrdcfgvhbj", 456789));
 
-	/*vector<string> words=Parser::split(line);
+	unique_ptr<Admin> a(new Admin(12, "fsaddas", "asddaddas", 123123));
 
-	for (int i = 0; i < words.size(); i++)
-	{
-		cout << words[i];
-	}*/
+	a->editEmployee(123,"Moataz","123456789",70000);
+	
+	//e.addClient(*c1);
 	
 	
-	/*
 
 	
 	
-	vector<string> temp1 = m.getAllClients();
-	for (int i = 0; i < temp1.size(); i++)
-	{
-		cout << temp1[i] << endl;;
-
-	}*/
+	
+	
 
 	//Screen::welcomeScreen();
 	/*Screen::login_or_signup();
