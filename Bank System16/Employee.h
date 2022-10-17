@@ -223,3 +223,10 @@ public:
 	}
 };
 
+#include"Filehelper.h"
+
+void Employee::addClient(Client& client)
+{
+	FileHelper::saveClient(client);
+	
+}

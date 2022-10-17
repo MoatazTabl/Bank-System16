@@ -1,13 +1,14 @@
 #pragma once
-#pragma message("Top in: " __FILE__)
+
 #include<iostream>
 
 #include<vector>
 #include<string>
 #include<sstream>
+#include<memory>
 
 using namespace std;
-#pragma message("Before class in: " __FILE__)
+
 
 class Parser
 {
@@ -29,10 +30,9 @@ public:
 			}
 			return splitWords;
 		}
-		else if (whichIndex>=1)
+		else if (whichIndex==1)
 		{
 		
-
 			string firstWord1;
 
 			while (getline(s, lineWords))
@@ -45,12 +45,14 @@ public:
 			}
 			return splitNums;
 		}
+		
 	}
 
-	static Client parseToClient(string line)
+	static unique_ptr<Client> parseToClient(string line)
 	{
 		vector <string> info = split(line);
-		Client c(stoi(info[0]), info[1],info[2], stod(info[3]));
+		unique_ptr<Client>c(new Client(stoi(info[0]), info[1], info[2], stod(info[3])));
+		//Client c(stoi(info[0]), info[1],info[2], stod(info[3]));
 		return c;
 	}
 
