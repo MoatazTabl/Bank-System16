@@ -1,4 +1,5 @@
 #pragma once
+#pragma message("Top in: " __FILE__)
 #include"Client.h"
 #include"Employee.h"
 #include"Admin.h"
@@ -7,7 +8,7 @@
 #include<fstream>
 #include<vector>
 #include<regex>
-
+#pragma message("Before class in: " __FILE__)
 
 class ClientManger
 {
@@ -19,6 +20,7 @@ public:
 		cout << "3-Withdraw\n";
 		cout << "4-Transfer to\n";
 		cout << "5-Update Password\n";
+		cout << "6-Exit";
 
 
 	}
@@ -38,7 +40,7 @@ public:
 
 
 
-			Employee emp;
+			Employee emp(1, "dasads", "31223231",2123123);
 
 			unique_ptr<int>c1 = move(emp.searchClient<int>(person->getID()));
 

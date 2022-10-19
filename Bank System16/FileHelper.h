@@ -1,5 +1,5 @@
 #pragma once
-
+#pragma message("Top in: " __FILE__)
 #include "Client.h"
 #include"Employee.h"
 #include"Admin.h"
@@ -8,7 +8,7 @@
 #include<iostream>
 #include<string>
 #include<fstream>
-
+#pragma message("Before class in: " __FILE__)
 using namespace std;
 class FileHelper
 {

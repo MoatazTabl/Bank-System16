@@ -1,5 +1,5 @@
 #pragma once
-
+#pragma message("Top in: " __FILE__)
 #include<iostream>
 
 #include<vector>
@@ -7,6 +7,10 @@
 #include<sstream>
 #include<memory>
 
+#include"Client.h"
+#include"Employee.h"
+#include"Admin.h"
+#pragma message("Before class in: " __FILE__)
 using namespace std;
 
 
@@ -51,9 +55,23 @@ public:
 	static unique_ptr<Client> parseToClient(string line)
 	{
 		vector <string> info = split(line);
-		unique_ptr<Client>c(new Client(stoi(info[0]), info[1], info[2], stod(info[3])));
+		unique_ptr<Client>client(new Client(stoi(info[0]), info[1], info[2], stod(info[3])));
 		//Client c(stoi(info[0]), info[1],info[2], stod(info[3]));
-		return c;
+		return client;
+	}
+	static unique_ptr<Employee> parseToEmployee(string line)
+	{
+		vector <string> info = split(line);
+		unique_ptr<Employee>emp(new Employee(stoi(info[0]), info[1], info[2], stod(info[3])));
+		
+		return emp;
+	}
+	static unique_ptr<Admin> parseToAdmin(string line)
+	{
+		vector <string> info = split(line);
+		unique_ptr<Admin>admin(new Admin(stoi(info[0]), info[1], info[2], stod(info[3])));
+		
+		return admin;
 	}
 
 	

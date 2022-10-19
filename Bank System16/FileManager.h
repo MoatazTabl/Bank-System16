@@ -1,13 +1,12 @@
 #pragma once
+#pragma message("Top in: " __FILE__)
 
-#ifndef _File1
-#define _File1
 
 #include"Admin.h"
 #include "DataSourceInterface.h"
 #include <fstream>
 #include <string>
-
+#pragma message("Before class in: " __FILE__)
 
 class FileManager : public DataSourceInterface
 {
@@ -130,4 +129,3 @@ public:
 	
 };
 
-#endif // !
